@@ -1,0 +1,70 @@
+﻿@model FizzBuzz.Models.FizzBuzzAtlas
+
+<h1>Fizz Buzz Page</h1>
+
+<div class="container col-xxl-8 px-4 py-5 mt-5">
+    <div class="row gy-2 h-100 row-cols-md-2 row-cols-1 ">
+        <div class="col border-2 border-end ">
+            <h1 class="fw-bold lh-1 mb-3">FizzBuzz</h1>
+            <h4 class="lead">
+                This application will consider the two numbers entered and for each number between 1 and 100.
+                It will print FIZZ for the numbers that are divisible by the first number.  BUZZ will be printed
+                for the numbers divisible by the second number.  FIZZBUZZ for the numbers divisible by both and
+                simply print the number if it is not divisible by either.
+            </h4>
+
+            <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+            <p>
+                Enter 2 numbers.  The first number will be used to evaluate Fizz.
+                The second number will be used to evaluate Buzz and FizzBuzz will be determined based on
+                the combination of the two numbers.
+            </p>
+        </div>
+        <div class="col">
+            <div>
+                <h5>Enter numbers</h5>
+                @*Add code here*@
+                <form asp-controller="Home" asp-action="FBPage" method="post">
+                    <div class="row">
+                        <div class="form-group col">
+                            <label asp-for="FizzValue">Fizz Value</label>
+                            <input type="number" asp-for="FizzValue" class="form-control" placeholder="Enter Fizz" value="@Model?.FizzValue" />
+                        </div>
+                        <div class="form-group col">
+                            <label asp-for="BuzzValue">Buzz Value</label>
+                            <input type="number" asp-for="BuzzValue" class="form-control" placeholder="Enter Buzz" value="@Model?.BuzzValue" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+                <h2 class="mt-5 border-bottom border-2">Results</h2>
+                @*And here*@
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-dark">
+                        <thead>
+                            <tr><th colspan="5">Fizz Buzz Results</th></tr>
+                        </thead>
+                        @for(int i = 0; i < Model?.Results.Count(); i += 5)
+                        {
+                            <tr>
+                                <td class="@Model.Results[i].ToLower()">@Model.Results[i]</td>
+                                <td class="@Model.Results[i + 1].ToLower()">@Model.Results[i + 1]</td>
+                                <td class="@Model.Results[i + 2].ToLower()">@Model.Results[i + 2]</td>
+                                <td class="@Model.Results[i + 3].ToLower()">@Model.Results[i + 3]</td>
+                                <td class="@Model.Results[i + 4].ToLower()">@Model.Results[i + 4]</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
